@@ -1,0 +1,10 @@
+{
+  "Name": "SoloBedEnergize",
+  "Author": "HANNTR",
+  "Version": "1.0.0",
+  "Description": "Adds the recharge functionality in multiplayer to solo worlds",
+  "UniqueID": "HANNTR.SoloBedEnergize",
+  "EntryDll": "SoloBedEnergize.dll",
+  "MinimumApiVersion": "3.0.0",
+  "UpdateKeys": []
+}
