@@ -10,12 +10,17 @@ namespace SoloBedEnergize
     /// <summary>The mod entry point.</summary>
     public class ModEntry : Mod
     {
+
+        private ModConfig Config;
+
         /*********
         ** Public methods
         *********/
         public override void Entry(IModHelper helper)
         {
             helper.Events.GameLoop.OneSecondUpdateTicking += this.updateStaminaForFarmer;
+            this.Config = this.Helper.ReadConfig<ModConfig>();
+
         }
 
 
@@ -31,7 +36,7 @@ namespace SoloBedEnergize
                 return;
 
             if (Game1.player.isInBed)
-                Game1.player.Stamina += (float)(2);
+                Game1.player.Stamina += (float)(Config.energyRate);
             
         }
     }
