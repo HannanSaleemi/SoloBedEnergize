@@ -20,7 +20,6 @@ namespace SoloBedEnergize
         {
             helper.Events.GameLoop.OneSecondUpdateTicking += this.updateStaminaForFarmer;
             this.Config = this.Helper.ReadConfig<ModConfig>();
-
         }
 
 
@@ -32,12 +31,30 @@ namespace SoloBedEnergize
             if (!Context.IsWorldReady)
                 return;
 
-            if (Game1.serverHost != null)
+            if (this.moreThanOnePlayerConnected())
+            {
                 return;
+            } 
+            else
+            {
+                if (Game1.player.isInBed)
+                {
+                    Game1.player.Stamina += (float)(Config.energyRate);
+                    Game1.player.health += Config.healthRate;
+                }
+            }
+        }
 
-            if (Game1.player.isInBed)
-                Game1.player.Stamina += (float)(Config.energyRate);
-            
+        // Want to use the default game recharging is more than one player connected
+        private bool moreThanOnePlayerConnected()
+        {
+            if ((Game1.getOnlineFarmers().Count) > 1) 
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }
